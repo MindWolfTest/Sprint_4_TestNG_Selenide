@@ -8,11 +8,11 @@ import static com.example.constants.ConstColor.BLACK;
 import static com.example.constants.ConstColor.GRAY;
 
 
-public class CreateOrderTest extends BaseTest
+public class CreateOrderPageTest extends BaseTest
 {
     Generator generator = new Generator();
 
-    @DataProvider(name = "test1")
+    @DataProvider(name = "DataForCreateOrder")
     public Object[][] data()
     {
         return new Object[][]
@@ -43,7 +43,7 @@ public class CreateOrderTest extends BaseTest
                 };
     }
 
-    @Test(dataProvider = "test1")
+    @Test(dataProvider = "DataForCreateOrder")
     public void createOrder(String firstName, String secondName, String address, String metroStation, String phoneNumber,
                             String date, String rentalPeriod, String firstColor, String secondColor, String comment)
     {
