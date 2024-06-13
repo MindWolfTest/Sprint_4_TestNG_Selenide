@@ -2,6 +2,7 @@ package com.example;
 
 import com.codeborne.selenide.SelenideElement;
 
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -131,5 +132,12 @@ public class CreateOrderSecondPage
     {
         textOrderCreated.shouldHave(text("Заказ оформлен"));
         return this;
+    }
+
+    public String getNumberOfOrder()
+    {
+        String text = textOrderCreated.getText();
+        //System.out.println(test);
+        return text.replaceAll("[^0-9]", "");
     }
 }

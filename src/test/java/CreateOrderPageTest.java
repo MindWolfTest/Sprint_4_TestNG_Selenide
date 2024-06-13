@@ -1,3 +1,4 @@
+import com.example.CancelOrder;
 import com.example.Generator;
 import com.example.CreateOrderFirstPage;
 import com.example.CreateOrderSecondPage;
@@ -72,5 +73,11 @@ public class CreateOrderPageTest extends BaseTest
                 .checkConfirmOrderWindow()
                 .clickYesButtonToConfirmOrder()
                 .checkTextOrderCreated();
+
+        CancelOrder cancelOrder = new CancelOrder();
+        cancelOrder
+                .openCreatedOrderPage()
+                .checkOpenCreatedOrderPage()
+                .clickCancelOrderButton();
     }
 }
