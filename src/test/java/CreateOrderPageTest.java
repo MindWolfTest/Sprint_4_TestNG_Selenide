@@ -1,7 +1,6 @@
-import com.example.CancelOrder;
-import com.example.Generator;
-import com.example.CreateOrderFirstPage;
-import com.example.CreateOrderSecondPage;
+import com.example.web.CreateOrderFirstPage;
+import com.example.web.CreateOrderSecondPage;
+import com.example.web.Generator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -74,10 +73,6 @@ public class CreateOrderPageTest extends BaseTest
                 .clickYesButtonToConfirmOrder()
                 .checkTextOrderCreated();
 
-        CancelOrder cancelOrder = new CancelOrder();
-        cancelOrder
-                .openCreatedOrderPage()
-                .checkOpenCreatedOrderPage()
-                .clickCancelOrderButton();
+        orderID = createOrderSecondPage.getNumberOfOrder();
     }
 }

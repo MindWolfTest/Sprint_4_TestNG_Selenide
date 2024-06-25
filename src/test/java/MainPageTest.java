@@ -1,7 +1,7 @@
 import com.codeborne.selenide.SelenideElement;
-import com.example.MainPage;
-import com.example.CreateOrderFirstPage;
-import com.example.OrderPage;
+import com.example.web.MainPage;
+import com.example.web.CreateOrderFirstPage;
+import com.example.web.OrderPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
