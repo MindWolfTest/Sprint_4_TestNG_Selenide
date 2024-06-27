@@ -2,6 +2,7 @@ package com.example.web;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
@@ -31,42 +32,49 @@ public class MainPage
     private final SelenideElement orderNumberField = $(byXpath(".//input[@placeHolder = 'Введите номер заказа']"));
     private final SelenideElement buttonGo = $(byXpath(".//button[text() = 'Go!']"));
 
+    @Step("Открыть главную стр.")
     public MainPage openMainPage()
     {
         open(URL_MAIN_PAGE);
         return this;
     }
 
+    @Step("Проверка что открылась главная стр.")
     public MainPage checkOpenMainPage()
     {
         textInHomePageSamokatNew.shouldHave(text(TEXT_SAMOKAT));
         return this;
     }
 
+    @Step("Клик по кнопке Заказать в хедере")
     public MainPage clickOrderFromHeaderButton()
     {
         orderButtonInHeader.click();
         return this;
     }
 
+    @Step("Клик по кнопке принять куки")
     public MainPage clickAcceptCookieButton()
     {
         acceptCookeiButton.click();
         return this;
     }
 
+    @Step("Клик по кнопке Заказать в футере")
     public MainPage clickOrderFromFooterButton()
     {
         orderButtonInFooter.scrollIntoView(true).click();
         return this;
     }
 
+    @Step("Клик по логотипу Яндекс")
     public MainPage clickAtLogoYandex()
     {
         logoYandex.click();
         return this;
     }
 
+    @Step("Проверить URL редиректа корректный")
     public MainPage checkOpenDzen()
     {
         Selenide.switchTo().window(1);
@@ -74,30 +82,35 @@ public class MainPage
         return this;
     }
 
+    @Step("Клик по логотипу Самокат")
     public MainPage clickLogoSamokat()
     {
         logoSamokat.click();
         return this;
     }
 
+    @Step("Клик по кнопке Статус заказа")
     public MainPage clickOrderStatusButton()
     {
         orderStatusButton.click();
         return this;
     }
 
-    public MainPage enterNumberOrder()
+    @Step("Ввод номера заказа {orderNumber}")
+    public MainPage enterNumberOrder(String orderNumber)
     {
-        orderNumberField.setValue(WRONG_ORDER_ID);
+        orderNumberField.setValue(orderNumber);
         return this;
     }
 
+    @Step("Клик по кнопке Go!")
     public MainPage clickButtonGo()
     {
         buttonGo.click();
         return this;
     }
 
+    @Step("Проверка что на главной стр есть вопрос\n{textQuestion}")
     public MainPage checkQuestion(SelenideElement elementQuestion, String textQuestion)
     {
         elementQuestion
@@ -106,12 +119,14 @@ public class MainPage
         return this;
     }
 
+    @Step("Клик по кнопе с вопросом")
     public MainPage clickQuestion(SelenideElement elementQuestion)
     {
         elementQuestion.click();
         return this;
     }
 
+    @Step("Проверка что есть ответ на вопрос\n{textAnswer}")
     public MainPage checkAnswer(SelenideElement elementAnswer, String textAnswer)
     {
         elementAnswer

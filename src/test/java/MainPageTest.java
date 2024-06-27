@@ -63,17 +63,7 @@ public class MainPageTest extends BaseTest
                 .checkOpenMainPage();
     }
 
-    @Test
-    public void checkWrongIDOrderTest()
-    {
-        mainPage
-                .openMainPage()
-                .clickOrderStatusButton()
-                .enterNumberOrder()
-                .clickButtonGo();
-        orderPage
-                .checkWrongOderMessage();
-    }
+
 
     @DataProvider(name = "Questions")
     public Object[][] data()

@@ -1,6 +1,7 @@
 package com.example.web;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.*;
@@ -22,35 +23,42 @@ public class CreateOrderFirstPage
 
 
 
+    @Step("Открыть первую страницу создания заказа")
     public CreateOrderFirstPage openOrderPage()
     {
         open(URL_ORDER_PAGE);
         return this;
     }
+
+    @Step("Проверка, что первая страница создания заказа открылась")
     public CreateOrderFirstPage checkOpenOrderFirstPage()
     {
         textInFirstOrderPage.shouldHave(exactText(TEXT_IN_ORDER_FIRST_PAGE));
         return this;
     }
 
+    @Step("Ввод имени {firstName}")
     public CreateOrderFirstPage enterFirstName(String firstName)
     {
         firstNameField.setValue(firstName);
         return this;
     }
 
+    @Step("Ввод фамилии {secondName}")
     public CreateOrderFirstPage enterSecondName(String secondName)
     {
         secondNameField.setValue(secondName);
         return this;
     }
 
+    @Step("Ввод адреса {address}")
     public CreateOrderFirstPage enterAddressField(String address)
     {
         addressField.setValue(address);
         return this;
     }
 
+    @Step("Ввод станции метро {metroStation}")
     public CreateOrderFirstPage chooseMetroStation(String metroStation)
     {
         metroStationField.click();
@@ -58,18 +66,21 @@ public class CreateOrderFirstPage
         return this;
     }
 
+    @Step("Ввод телефона {phoneNumber}")
     public CreateOrderFirstPage enterPhoneNumber(String phoneNumber)
     {
         phoneNumberField.setValue(phoneNumber);
         return this;
     }
 
+    @Step("Клик по кнопке принять куки")
     public CreateOrderFirstPage clickAcceptCookies()
     {
         acceptCookiesButton.click();
         return this;
     }
 
+    @Step("Клик по кнопке переход на следующую стр. оформления заказа")
     public CreateOrderFirstPage clickNextButton()
     {
         buttonNext.scrollIntoView(true).click();

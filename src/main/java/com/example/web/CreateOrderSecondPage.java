@@ -1,6 +1,7 @@
 package com.example.web;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 
 import static com.codeborne.selenide.Condition.*;
@@ -8,7 +9,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.example.constants.ConstColor.BLACK;
 import static com.example.constants.ConstColor.GRAY;
-import static com.example.constants.ConstOrderText.TEXT_IN_ORDER_SECOND_PAGE;
+import static com.example.constants.ConstOrderText.*;
 
 public class CreateOrderSecondPage
 {
@@ -23,18 +24,21 @@ public class CreateOrderSecondPage
     private final SelenideElement yesButtonForCreateOrder = $(byXpath(".//button[text()='Да']"));
     private final SelenideElement textOrderCreated = $(byClassName("Order_ModalHeader__3FDaJ"));
 
+    @Step("Провека что открылась вторая стр. оформления заказа")
     public CreateOrderSecondPage checkOrderSecondPage()
     {
         textInOrderSecondPage.shouldHave(text(TEXT_IN_ORDER_SECOND_PAGE));
         return this;
     }
 
+    @Step("Ввод даты доставки {deliveryDate}")
     public CreateOrderSecondPage enterDeliveryDate(String deliveryDate)
     {
         deliveryDateField.setValue(deliveryDate);
         return this;
     }
 
+    @Step("Выбор периода аренды {rentalPeriod}")
     public CreateOrderSecondPage chooseRentalPeriod(String rentalPeriod)
     {
         textInOrderSecondPage.click();
@@ -43,6 +47,7 @@ public class CreateOrderSecondPage
         return this;
     }
 
+    @Step("Выбор первого цвета {firstColor}")
     public CreateOrderSecondPage chooseFirstColor(String firstColor)
     {
         switch (firstColor)
@@ -58,6 +63,7 @@ public class CreateOrderSecondPage
         return this;
     }
 
+    @Step("Выбор второго цвета {secondColor}")
     public CreateOrderSecondPage chooseSecondColor(String secondColor)
     {
         switch (secondColor)
@@ -73,6 +79,8 @@ public class CreateOrderSecondPage
         return this;
     }
 
+    @Step("Метод проверки, что при указании 2ух одинаковых цветов в чекбокс с выбором цвета ставится и снимается галка.\n" +
+            "Выбранные цвета: первый цвет: {firstColor}, второй цвет: {secondColor}")
     public CreateOrderSecondPage checkEmptyColorBox(String firstColor, String secondColor)
     {
         if (firstColor.equals(secondColor) && firstColor.equals(BLACK))
@@ -85,6 +93,7 @@ public class CreateOrderSecondPage
         return this;
     }
 
+    @Step("Метод проверки, что черный цвет был выбран")
     public CreateOrderSecondPage checkAddBlackColorBox(String firstColor, String secondColor)
     {
         if(!firstColor.equals(secondColor) && (firstColor.equals(BLACK) || secondColor.equals(BLACK)))
@@ -94,6 +103,7 @@ public class CreateOrderSecondPage
         return this;
     }
 
+    @Step("Метод проверки, что серый цвет был выбран")
     public CreateOrderSecondPage checkAddGrayColorBox(String firstColor, String secondColor)
     {
         if (!firstColor.equals(secondColor) && (firstColor.equals(GRAY) || secondColor.equals(GRAY)))
@@ -104,40 +114,47 @@ public class CreateOrderSecondPage
     }
 
 
+    @Step("Ввели комментарий {comment}")
     public CreateOrderSecondPage enterComment(String comment)
     {
         commentField.setValue(comment);
         return this;
     }
 
+    @Step("Клик по кнопке заказать")
     public CreateOrderSecondPage clickOrderButton()
     {
         orderButton.click();
         return this;
     }
 
+    @Step("Проверка что окно Хотите оформить заказ? открылось")
     public CreateOrderSecondPage checkConfirmOrderWindow()
     {
-        textCheckCreateOrder.shouldHave(exactText("Хотите оформить заказ?"));
+        textCheckCreateOrder.shouldHave(exactText(TEXT_WANNA_CONTINUE_ORDER));
         return this;
     }
 
+    @Step("Клик по кнопке ok в окне Хотите оформить заказ?")
     public CreateOrderSecondPage clickYesButtonToConfirmOrder()
     {
         yesButtonForCreateOrder.click();
         return this;
     }
 
+    @Step("Проверка что окно Заказ оформлен открылось")
     public CreateOrderSecondPage checkTextOrderCreated()
     {
-        textOrderCreated.shouldHave(text("Заказ оформлен"));
+        textOrderCreated.shouldHave(text(TEXT_ORDER_CREATED));
         return this;
     }
 
+    @Step("Получение номера заказа")
     public String getNumberOfOrder()
     {
         String text = textOrderCreated.getText();
-        //System.out.println(test);
+        /*String test = text.replaceAll("[^0-9]", "");
+        System.out.println(test);*/
         return text.replaceAll("[^0-9]", "");
     }
 }

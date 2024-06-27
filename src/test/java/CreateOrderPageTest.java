@@ -44,7 +44,7 @@ public class CreateOrderPageTest extends BaseTest
     }
 
     @Test(dataProvider = "DataForCreateOrder")
-    public void createOrder(String firstName, String secondName, String address, String metroStation, String phoneNumber,
+    public void createOrderTest(String firstName, String secondName, String address, String metroStation, String phoneNumber,
                             String date, String rentalPeriod, String firstColor, String secondColor, String comment)
     {
         CreateOrderFirstPage createOrderFirstPage = new CreateOrderFirstPage();
